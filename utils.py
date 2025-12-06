@@ -2,12 +2,14 @@ def read_file(input_path):
     return input_path.read_text()
 
 
-def read_file_as_lines(input_path):
+def read_file_as_lines(input_path, keep_whitespace=False):
+    if keep_whitespace:
+        return read_file(input_path).split("\n")
     return read_file(input_path).strip().split("\n")
+    
 
-
-def read_file_as_grid(input_path, apply_fn=str):
-    data = read_file_as_lines(input_path)
+def read_file_as_grid(input_path, apply_fn=str, keep_whitespace=False):
+    data = read_file_as_lines(input_path, keep_whitespace=keep_whitespace)
     return [[apply_fn(ch) for ch in line] for line in data]
 
 
